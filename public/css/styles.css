@@ -59,7 +59,7 @@ h1{
 }
 
 .specs{
-  background-color: rgba(255, 255, 255, 0.555);
+  background-color: rgba(255, 255, 255, 0.664);
   z-index: 5;
   margin-top: -190px;
   padding: 0px 0px 0px 10px;
@@ -217,6 +217,15 @@ h1{
   body{
     background-image: url('/images/site/checkerboard.jpg');
     background-repeat: repeat;
+  }
+
+  nav ul li:hover{
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  .specs h3:hover{
+    cursor: pointer;
   }
 
   
