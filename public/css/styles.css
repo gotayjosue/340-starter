@@ -37,16 +37,22 @@ nav ul{
   list-style: none;
   padding: 0;
   margin: 0;
-  color: white;
+  text-transform: capitalize;
 }
 
-.background.hide{
-  display: none;
+nav a{
+  color: white;
+  text-decoration: none;
+}
+
+nav a:hover{
+  text-decoration: underline;
 }
 
 h1{
   font-size: 25px;
   padding-left: 10px;
+  text-transform: capitalize;
 }
 
 .hero{
@@ -150,6 +156,40 @@ h1{
 .hub-cap{
   grid-row: 3;
   grid-column: 2;
+}
+
+/* Classification view */
+
+#inv-display{
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  justify-items: center;
+}
+
+.namePrice{
+  width: 100%;
+  max-width: 202px;
+  justify-content: center;
+  text-align: center;
+}
+
+#inv-display img{
+  border-radius: 5px;
+}
+
+#inv-display li{
+  border-bottom: solid rgba(0, 0, 0, 0.116) 1px;
+  border-right: solid rgba(0, 0, 0, 0.116) 1px;
+  border-left: solid rgba(0, 0, 0, 0.116) 1px;
+  margin-top: 18px;
+  border-radius: 5px;
+}
+
+#inv-display hr{
+  height: 5px;
+  background-color: black;
+  border-radius: 5px;
 }
 
 @media screen and (min-width: 550px){
