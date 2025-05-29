@@ -84,6 +84,47 @@ Util.buildVehicleDetailView = async function(vehicle){
   `
 }
 
+/* **************************************
+* Build the login view HTML
+* ************************************ */
+
+Util.buildLoginView = async function(){
+  return `
+    <form class="signIn">
+      <label>Email:<input type="email" required name="account_email" title="Your username" ></label>
+      <label>Password:<input type="password" required name="account_password" title="Your password"></label>
+      <div class="buttonContainer">
+        <button type="submit">Login</button>
+      </div>
+      <p>No account? <span><a href="/account/registration">Sign-up</a></span></p>
+    </form>`
+}
+
+/* **************************************
+* Build the register view HTML
+* ************************************ */
+
+Util.buildRegisterView = async function(){
+  return `
+    <form class="signUp" action="/account/register" method="post">
+      <label>First name<input type="text" required name="account_firstname" title="Your first name" autocomplete="given-name"></label>
+      <label>Last name<input type="text" required name="account_lastname" title="Your last name" autocomplete="family-name"></label>
+      <label>Email:<input type="email" required name="account_email" title="Your username" ></label>
+      <label>Password:<input type="password" required name="account_password" title="Your password"></label>
+      <p><strong>Password must be:</strong></p>
+      <ul>
+        <li>12 characters in length, minimun</li>
+        <li>Contain at least 1 capital letter</li>
+        <li>Contain at least 1 number</li>
+        <li>Contain at least 1 special character</li>
+      </ul>
+      <div class="buttonContainer">
+        <button type="submit">Register</button>
+      </div>
+    </form>`
+}
+
+
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for 
