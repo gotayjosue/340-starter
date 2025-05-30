@@ -273,10 +273,16 @@ input[type = 'email']{
     cursor: pointer;
 }
 
+.signIn ul{
+  color: white;
+  line-height: 25px;
+}
+
 .signIn p, .signIn a{
   text-align: center;
   color: white;
 }
+
 
 /* Sign Up view */
 
