@@ -342,6 +342,111 @@ input[type = 'text']{
   line-height: 25px;
 }
 
+/* Management view */
+
+.addLinks{
+  display: flex;
+  flex-direction: column;
+  line-height: 25px;
+  padding: 15px;
+}
+
+/* Classification form */
+
+.classForm{
+  margin: auto;
+  border: 1px solid rgb(255, 255, 255);
+  background-color: rgba(33, 64, 73, 0.836);
+  padding: 50px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 500px;
+  margin-top: 50px;
+}
+
+.classForm label{
+  color: white;
+  display: block;
+  padding-top: 1rem;
+  margin-top: 15px;
+}
+
+.classForm input [type='text']{
+  display: block;
+  width: 100%;
+  padding: .75rem;
+  margin-top: 5px;
+}
+
+.classForm .buttonContainer{
+  text-align: center;
+  margin-top: 30px;
+}
+
+.classForm p{
+  color: white;
+}
+
+.classForm button[type = 'submit']{
+  border: none;
+  padding: .75rem;
+  width: 50%;
+  background-color: white;
+  color: rgba(33, 64, 73, 0.836);
+  font-size: 16px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.24);
+  border-radius: 10px;
+  transition: .8s;
+  cursor: pointer;
+}
+
+/* Add car form */
+
+.addCar{
+  margin: auto;
+  border: 1px solid rgb(255, 255, 255);
+  background-color: rgba(33, 64, 73, 0.836);
+  padding: 50px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 500px;
+  margin-top: 50px;
+}
+
+.addCar label{
+  color: white;
+  display: block;
+  padding-top: 1rem;
+  margin-top: 15px;
+}
+
+.addCar input[type = 'number'],
+textarea,
+select,
+input[type = 'text']{
+  display: block;
+  width: 100%;
+  padding: .75rem;
+  margin-top: 5px;
+}
+
+.addCar .buttonContainer{
+  text-align: center;
+  margin-top: 30px;
+}
+
+.addCar button[type = 'submit']{
+  border: none;
+  padding: .75rem;
+  width: 50%;
+  background-color: white;
+  color: rgba(33, 64, 73, 0.836);
+  font-size: 16px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.24);
+  border-radius: 10px;
+  transition: .8s;
+  cursor: pointer;
+}
 
 
 @media screen and (min-width: 550px){
@@ -355,8 +460,6 @@ input[type = 'text']{
   .details{
     margin-top: 130px;
   }
-
-
 
 }
 

@@ -135,6 +135,103 @@ Util.buildRegisterView = async function(
     </form>`
 }
 
+/* **************************************
+* Build the management view HTML
+* ************************************ */
+
+Util.buildManagementView = async function(){
+  return `
+    <div class="addLinks">
+      <a href="/inv/add-classification">Add New Classification</a>
+      <a href="/inv/add-vehicle">Add New Vehicle</a>
+    </div>
+  `
+}
+
+/* **************************************
+* Build the add classification view HTML
+* ************************************ */
+
+Util.buildAddClassificationView = async function(){
+  return `
+    <form class="classForm" action="/inv/add-classification" method="post">
+      <p>NAME MUST BE ALPHABETIC CHARACTERS ONLY</p>
+      <label>Classification Name:<input type="text" required name="classification_name" title="Classification" pattern="/^[A-Za-z0-9]+$/)"></label>
+      <div class="buttonContainer">
+        <button type="submit">Add Classification</button>
+      </div>
+    </form>`
+}
+
+Util.buildClassificationList = async function (classification_id = null) {
+    let data = await invModel.getClassifications()
+    let classificationList =
+      '<select name="classification_id" id="classificationList" required>'
+    classificationList += "<option value=''>Choose a Classification</option>"
+    data.rows.forEach((row) => {
+      classificationList += '<option value="' + row.classification_id + '"'
+      if (
+        classification_id != null &&
+        row.classification_id == classification_id
+      ) {
+        classificationList += " selected "
+      }
+      classificationList += ">" + row.classification_name + "</option>"
+    })
+    classificationList += "</select>"
+    return classificationList
+  }
+
+Util.buildAddVehicleView = async function(
+  inv_make="",
+  inv_model="",
+  inv_description="",
+  inv_image="",
+  inv_thumbnail="",
+  inv_year="",
+  inv_price="",
+  inv_miles="",
+  inv_color="",
+  classification_id = null
+) {
+  const classificationList = await Util.buildClassificationList()
+  return `
+    <form class="addCar" action="/inv/add-inventory" method="post">
+      ${classificationList}
+      <label>Make
+        <input type="text" placeholder="Min of 3 characters" required name="inv_make"  value="${inv_make}">
+      </label>
+      <label>Model
+        <input type="text" placeholder="Min of 3 characters" required name="inv_model"  value="${inv_model}">
+      </label>
+      <label>Description
+        <textarea required name="inv_description">${inv_description}</textarea>
+      </label>
+      <label>Image Path
+        <input type="text" required name="inv_image"  value="/images/vehicles/no-image.png" pattern="^/images/vehicles/.*\.(jpg|jpeg|png|gif)$">
+      </label>
+      <label>Thumbnail Path
+        <input type="text" required name="inv_thumbnail"  value="/images/vehicles/no-image.png" pattern="^/images/vehicles/.*\.(jpg|jpeg|png|gif)$">
+      </label>
+      <label>Price
+        <input type="number" placeholder="Decimal or integer" required name="inv_price" step="0.01" min="0"  value="${inv_price}">
+      </label>
+      <label>Year
+        <input type="number" placeholder="4-digit year" required name="inv_year"  value="${inv_year}">
+      </label>
+      <label>Miles
+        <input type="number" placeholder="Digits only" required name="inv_miles" min="0" value="${inv_miles}">
+      </label>
+      <label>Color
+        <input type="text" required name="inv_color"  value="${inv_color}">
+      </label>
+      <div class="buttonContainer">
+        <button type="submit">Add Vehicle</button>
+      </div>
+    </form>
+    `
+}
+
 
 /* ****************************************
  * Middleware For Handling Errors
