@@ -336,6 +336,12 @@ input[type = 'text']{
   line-height: 25px;
 }
 
+/* Error messages */
+
+.notice li{
+  line-height: 25px;
+}
+
 
 
 @media screen and (min-width: 550px){

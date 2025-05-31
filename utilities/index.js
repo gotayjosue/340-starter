@@ -88,10 +88,10 @@ Util.buildVehicleDetailView = async function(vehicle){
 * Build the login view HTML
 * ************************************ */
 
-Util.buildLoginView = async function(){
+Util.buildLoginView = async function(account_email=""){
   return `
-    <form class="signIn">
-      <label>Email:<input type="email" required name="account_email" title="Your username" ></label>
+    <form class="signIn" action="/account/login" method="post">
+      <label>Email:<input type="email" required name="account_email" title="Your username" value="${account_email}"></label>
       <label>Password:<input type="password" required name="account_password" title="Your password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"></label>
       <p><strong>Password must be:</strong></p>
       <ul>
@@ -111,12 +111,16 @@ Util.buildLoginView = async function(){
 * Build the register view HTML
 * ************************************ */
 
-Util.buildRegisterView = async function(){
+Util.buildRegisterView = async function(
+  account_firstname = "",
+  account_lastname = "",
+  account_email = ""
+){
   return `
     <form class="signUp" action="/account/register" method="post">
-      <label>First name<input type="text" required name="account_firstname" title="Your first name" autocomplete="given-name"></label>
-      <label>Last name<input type="text" required name="account_lastname" title="Your last name" autocomplete="family-name"></label>
-      <label>Email:<input type="email" required name="account_email" title="Your username" ></label>
+      <label>First name<input type="text" required name="account_firstname" title="Your first name" autocomplete="given-name" value="${account_firstname}"></label>
+      <label>Last name<input type="text" required name="account_lastname" title="Your last name" autocomplete="family-name" value="${account_lastname}"></label>
+      <label>Email:<input type="email" required name="account_email" title="Your username" value="${account_email}"></label>
       <label>Password:<input type="password" required name="account_password" title="Your password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"></label>
       <p><strong>Password must be:</strong></p>
       <ul>
