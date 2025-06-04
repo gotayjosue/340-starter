@@ -1,5 +1,7 @@
 const invModel = require("../models/inventory-model")
 const Util = {}
+const jwt = require("jsonwebtoken")
+require("dotenv").config()
 
 /* ************************
  * Constructs the nav HTML unordered list
@@ -121,7 +123,7 @@ Util.buildRegisterView = async function(
       <label>First name<input type="text" required name="account_firstname" title="Your first name" autocomplete="given-name" value="${account_firstname}"></label>
       <label>Last name<input type="text" required name="account_lastname" title="Your last name" autocomplete="family-name" value="${account_lastname}"></label>
       <label>Email:<input type="email" required name="account_email" title="Your username" value="${account_email}"></label>
-      <label>Password:<input type="password" required name="account_password" title="Your password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"></label>
+      <label>Password:<input type="password" required name="account_password" title="Your password" pattern="^(?=.*\\d)(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\\s).{12,}$"></label>
       <p><strong>Password must be:</strong></p>
       <ul>
         <li>12 characters in length, minimun</li>
@@ -232,6 +234,37 @@ Util.buildAddVehicleView = async function(
     `
 }
 
+/* ****************************************
+* Middleware to check token validity
+**************************************** */
+Util.checkJWTToken = (req, res, next) => {
+ if (req.cookies.jwt) {
+  jwt.verify(
+   req.cookies.jwt,
+   process.env.ACCESS_TOKEN_SECRET,
+   function (err, accountData) {
+    if (err) {
+     req.flash("Please log in")
+     res.clearCookie("jwt")
+     return res.redirect("/account/login")
+    }
+    res.locals.accountData = accountData
+    res.locals.loggedin = 1
+    next()
+   })
+ } else {
+  next()
+ }
+}
+
+Util.buildAccountView = async function(){
+  return `
+    <div class="accountManagement">
+      <p>You're logged in</p>
+    </div>
+  `
+}
+
 
 /* ****************************************
  * Middleware For Handling Errors
@@ -239,5 +272,17 @@ Util.buildAddVehicleView = async function(
  * General Error Handling
  **************************************** */
 Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
+
+/* ****************************************
+ *  Check Login
+ * ************************************ */
+ Util.checkLogin = (req, res, next) => {
+  if (res.locals.loggedin) {
+    next()
+  } else {
+    req.flash("notice", "Please log in.")
+    return res.redirect("/account/login")
+  }
+ }
 
 module.exports = Util

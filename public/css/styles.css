@@ -448,6 +448,16 @@ input[type = 'text']{
   cursor: pointer;
 }
 
+/* Account Management view */
+
+.accountManagement{
+  padding: 20px;
+}
+
+.accountManagement p{
+  color: black;
+}
+
 
 @media screen and (min-width: 550px){
 
