@@ -351,6 +351,24 @@ input[type = 'text']{
   padding: 15px;
 }
 
+.addLinks p{
+  color: black;
+}
+
+#classificationList{
+  display: block;
+  width: 30%;
+  padding: .75rem;
+  margin-top: 5px;
+  margin-left: 15px;
+}
+
+#inventoryDisplay{
+  padding: 15px;
+  line-height: 25px;
+}
+
+
 /* Classification form */
 
 .classForm{
