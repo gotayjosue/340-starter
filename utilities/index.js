@@ -146,6 +146,8 @@ Util.buildManagementView = async function(){
     <div class="addLinks">
       <a href="/inv/add-classification">Add New Classification</a>
       <a href="/inv/add-vehicle">Add New Vehicle</a>
+      <h2>Manage Inventory</h2>
+      <p>Select a classification from the list to see the items belonging to the classification</p>
     </div>
   `
 }

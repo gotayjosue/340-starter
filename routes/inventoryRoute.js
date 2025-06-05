@@ -20,6 +20,10 @@ router.get('/add-classification', invController.addClassificationView)
 //Route to build the "Add New Vehicle" view
 router.get('/add-vehicle', invController.addVehicleView)
 
+//Route to build the url inside the javascript file
+
+router.get('/getInventory/:classification_id', invController.getInventoryJSON)
+
 //Process add classification attempt
 router.post(
     "/add-classification",
