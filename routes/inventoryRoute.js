@@ -21,8 +21,12 @@ router.get('/add-classification', invController.addClassificationView)
 router.get('/add-vehicle', invController.addVehicleView)
 
 //Route to build the url inside the javascript file
-
 router.get('/getInventory/:classification_id', invController.getInventoryJSON)
+
+//Route to build the update car view
+router.get('/edit/:inv_id', invController.editVehicleView)
+
+
 
 //Process add classification attempt
 router.post(
@@ -39,5 +43,12 @@ router.post(
     invValidate.checkInventoryData,
     invController.addInventory
 )
+
+//Route to update the inventory
+router.post(
+    "/edit-inventory", 
+    invValidate.inventoryRules(),
+    invValidate.checkUpdateData,
+    invController.updateInventory)
 
 module.exports = router;
