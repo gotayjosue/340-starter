@@ -44,11 +44,9 @@ async function buildRegister(req, res, next){
 async function accountView(req, res, next){
     let nav = await utilities.getNav()
 
-    const html = await utilities.buildAccountView()
         res.render("account/account",{
             title: "Account Management",
             nav,
-            html,
             errors: null
         })
     }
@@ -129,6 +127,7 @@ async function accountLogin(req, res) {
   try {
     if (await bcrypt.compare(account_password, accountData.account_password)) {
       delete accountData.account_password
+      
       const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 1000 })
       if(process.env.NODE_ENV === 'development') {
         res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 })

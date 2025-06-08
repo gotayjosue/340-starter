@@ -13,22 +13,22 @@ router.get("/type/:classificationId", utilities.handleErrors(invController.build
 router.get("/detail/:inventoryId", utilities.handleErrors(invController.buildDetailView))
 
 //Route to build the classification view
-router.get('/', utilities.handleErrors(invController.managementView))
+router.get('/', utilities.checkAccountType, utilities.handleErrors(invController.managementView))
 
 //Route to build the "Add Classification" view
-router.get('/add-classification', utilities.handleErrors(invController.addClassificationView))
+router.get('/add-classification', utilities.checkAccountType, utilities.handleErrors(invController.addClassificationView))
 
 //Route to build the "Add New Vehicle" view
-router.get('/add-vehicle', utilities.handleErrors(invController.addVehicleView))
+router.get('/add-vehicle', utilities.checkAccountType, utilities.handleErrors(invController.addVehicleView))
 
 //Route to build the url inside the javascript file
 router.get('/getInventory/:classification_id', utilities.handleErrors(invController.getInventoryJSON))
 
 //Route to build the update car view
-router.get('/edit/:inv_id', utilities.handleErrors(invController.editVehicleView))
+router.get('/edit/:inv_id', utilities.checkAccountType, utilities.handleErrors(invController.editVehicleView))
 
 //Route to build the delete car view
-router.get('/delete/:inv_id', utilities.handleErrors(invController.deleteVehicleView))
+router.get('/delete/:inv_id', utilities.checkAccountType, utilities.handleErrors(invController.deleteVehicleView))
 
 
 

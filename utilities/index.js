@@ -252,6 +252,7 @@ Util.checkJWTToken = (req, res, next) => {
     }
     res.locals.accountData = accountData
     res.locals.loggedin = 1
+    
     next()
    })
  } else {
@@ -259,12 +260,23 @@ Util.checkJWTToken = (req, res, next) => {
  }
 }
 
-Util.buildAccountView = async function(){
-  return `
-    <div class="accountManagement">
-      <p>You're logged in</p>
-    </div>
-  `
+/* ****************************************
+* Middleware to check token validity
+**************************************** */
+Util.checkAccountType = (req, res, next) => {
+  const account = res.locals.accountData
+
+  if (!account || !account.account_type) {
+    req.flash("notice", "You must be logged in to access that page.")
+    return res.redirect("/account/login")
+  }
+
+  if (account.account_type === "Employee" || account.account_type === "Admin") {
+    return next()
+  } else {
+    req.flash("notice", "You do not have permission to access that page.")
+    return res.redirect("/account/login")
+  }
 }
 
 
