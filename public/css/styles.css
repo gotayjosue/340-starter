@@ -580,6 +580,114 @@ input[type = 'text']{
   cursor: pointer;
 }
 
+/* Account Update Form */
+.editAccount{
+  margin: auto;
+  border: 1px solid rgb(255, 255, 255);
+  background-color: rgba(33, 64, 73, 0.836);
+  padding: 50px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 500px;
+  margin-top: 50px;
+}
+
+.editAccount p{
+  color: white;
+}
+
+.editAccount label{
+  color: white;
+  display: block;
+  padding-top: 1rem;
+  margin-top: 15px;
+}
+
+.editAccount input[type = 'text'],
+input[type = 'email']{
+  display: block;
+  width: 100%;
+  padding: .75rem;
+  margin-top: 5px;
+}
+
+.editAccount textarea{
+  height: 110px;
+}
+
+.editAccount .accountUpdateButtonContainer{
+  text-align: center;
+  margin-top: 30px;
+}
+
+.editAccount button[type = 'submit']{
+  border: none;
+  padding: .75rem;
+  width: 50%;
+  background-color: white;
+  color: rgb(255, 255, 255);
+  font-size: 16px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.24);
+  border-radius: 10px;
+  background-color: rgba(0, 128, 0, 0.5);
+  transition: .8s;
+  cursor: pointer;
+}
+
+/* Password update form */
+.editPassword{
+  margin: auto;
+  border: 1px solid rgb(255, 255, 255);
+  background-color: rgba(33, 64, 73, 0.836);
+  padding: 50px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 500px;
+  margin-top: 50px;
+}
+
+.editPassword p{
+  color: white;
+}
+
+.editPassword label{
+  color: white;
+  display: block;
+  padding-top: 1rem;
+  margin-top: 15px;
+}
+
+.editPassword input[type = 'password']{
+  display: block;
+  width: 100%;
+  padding: .75rem;
+  margin-top: 5px;
+}
+
+.editPassword textarea{
+  height: 110px;
+}
+
+.editPassword .passwordUpdateButtonContainer{
+  text-align: center;
+  margin-top: 30px;
+}
+
+.editPassword button[type = 'submit']{
+  border: none;
+  padding: .75rem;
+  width: 50%;
+  background-color: white;
+  color: rgb(255, 255, 255);
+  font-size: 16px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.24);
+  border-radius: 10px;
+  background-color: rgba(0, 128, 0, 0.5);
+  transition: .8s;
+  cursor: pointer;
+}
+
+
 /* Account Management view */
 
 .accountManagement{

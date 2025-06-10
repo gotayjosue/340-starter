@@ -110,4 +110,76 @@ validate.checkLoginData = async (req, res, next) => {
   next()
 }
 
+//Account update validation
+validate.updateAccountRules = () => {
+  return [
+    body("account_firstname")
+      .trim()
+      .isLength({ min: 3 }).withMessage("First name must be at least 3 characters.")
+      .notEmpty().withMessage("Please provide a first name"),
+    body("account_lastname")
+      .trim()
+      .isLength({ min: 3 }).withMessage("Last name must be at least 3 characters.")
+      .notEmpty().withMessage("Please provide a last name"),
+    body("account_email")
+      .isEmail().withMessage("A valid email is required.")
+      .notEmpty().withMessage("Please provide an email")
+      .custom(async (account_email) => {
+        const emailExists = await accountModel.checkExistingEmail(account_email)
+        if (emailExists){
+          throw new Error ("Email exists. Try to use another one")
+        }
+      })
+  ]
+}
+
+validate.checkUpdateData = async (req, res, next) => {
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav()
+    return res.render("account/update", {
+      title: "Account Update",
+      nav,
+      errors,
+      account_firstname: req.body.account_firstname,
+      account_lastname: req.body.account_lastname,
+      account_email: req.body.account_email,
+      account_id: req.body.account_id
+    })
+  }
+  next()
+}
+
+//Password Rules
+
+validate.passwordRules = () => {
+  return [
+    body("account_password")
+      .isStrongPassword({
+        minLength: 12,
+        minUppercase: 1,
+        minNumbers: 1,
+        minSymbols: 1
+      })
+      .withMessage("Password does not meet requirements.")
+  ]
+}
+
+validate.checkPasswordData = async (req, res, next) => {
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav()
+    return res.render("account/update", {
+      title: "Account Update",
+      nav,
+      errors,
+      account_firstname: res.locals.accountData.account_firstname,
+      account_lastname: res.locals.accountData.account_lastname,
+      account_email: res.locals.accountData.account_email,
+      account_id: res.locals.accountData.account_id
+    })
+  }
+  next()
+}
+
 module.exports = validate
