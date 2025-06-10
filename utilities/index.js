@@ -94,7 +94,7 @@ Util.buildLoginView = async function(account_email=""){
   return `
     <form class="signIn" action="/account/login" method="post">
       <label>Email:<input type="email" required name="account_email" title="Your username" value="${account_email}"></label>
-      <label>Password:<input type="password" required name="account_password" title="Your password" pattern="^(?=.*\d)(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"></label>
+      <label>Password:<input type="password" required name="account_password" title="Your password" pattern="^(?=.*\\d)(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\\s).{12,}$"></label>
       <p><strong>Password must be:</strong></p>
       <ul>
         <li>12 characters in length, minimun</li>
@@ -123,7 +123,7 @@ Util.buildRegisterView = async function(
       <label>First name<input type="text" required name="account_firstname" title="Your first name" autocomplete="given-name" value="${account_firstname}"></label>
       <label>Last name<input type="text" required name="account_lastname" title="Your last name" autocomplete="family-name" value="${account_lastname}"></label>
       <label>Email:<input type="email" required name="account_email" title="Your username" value="${account_email}"></label>
-      <label>Password:<input type="password" required name="account_password" title="Your password" pattern="^(?=.*\d)(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"></label>
+      <label>Password:<input type="password" required name="account_password" title="Your password" pattern="^(?=.*\\d)(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\\s).{12,}$"></label>
       <p><strong>Password must be:</strong></p>
       <ul>
         <li>12 characters in length, minimun</li>
