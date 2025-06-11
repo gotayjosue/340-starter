@@ -98,13 +98,23 @@ invCont.addClassification = async function (req, res) {
  * ************************** */
 
 invCont.addVehicleView = async function (req, res, next){
-  let nav = await utilities.getNav()
-  const html = await utilities.buildAddVehicleView()
+  
+  const nav = await utilities.getNav()
+  const classificationList = await utilities.buildClassificationList()
 
   res.render('inventory/add-inventory', {
     title: 'Add Vehicle',
     nav,
-    html,
+    classificationList,
+    inv_make: "",
+    inv_model: "",
+    inv_description: "",
+    inv_image: "",
+    inv_thumbnail: "",
+    inv_year: "",
+    inv_price: "",
+    inv_miles: "",
+    inv_color: "",
     errors: null
   })
 }
@@ -155,25 +165,14 @@ invCont.addInventory = async function (req, res) {
     // In case of error, it reloads the form with error messages
     const classifications = await invModel.getClassifications()
     let nav = await utilities.getNav()
-    const html = await utilities.buildAddVehicleView(
-      inv_make,
-      inv_model,
-      inv_description,
-      inv_image,
-      inv_thumbnail,
-      inv_year,
-      inv_price,
-      inv_miles,
-      inv_color,
-      classification_id
-    )
+    const classificationList = await utilities.buildClassificationList(classification_id)
 
     req.flash("Error", "Failed to add vehicle.")
     res.status(500).render("inventory/add-inventory", {
       title: "Add New Vehicle",
       nav,
-      html,
       classifications,
+      classificationList,
       errors: null,
       classification_id,
       inv_make,
