@@ -379,5 +379,47 @@ invCont.deleteInventory = async function (req, res) {
   }
 }
 
+/* ***************************
+ *  Update Classification view
+ * ************************** */
+
+invCont.updateClassificationView = async function (req, res, next){
+  const classifications = await invModel.getClassificationsData()
+  let nav = await utilities.getNav()
+  
+  
+  res.render('inventory/update-classification', {
+    title: 'Update Classification',
+    nav,
+    classifications,
+    errors: null
+  })
+}
+
+invCont.updateClassificationData = async function (req, res) {
+  const classification_id = parseInt(req.params.classification_id)
+  const classification = await invModel.getClassificationById(classification_id)
+  const nav = await utilities.getNav()
+  
+  res.render("inventory/edit-classification", {
+    title: "Update Classification",
+    nav,
+    classification,
+    errors: null
+  })
+}
+
+invCont.updateClassification = async function (req, res) {
+  const { classification_id, classification_name } = req.body
+  const result = await invModel.updateClassification(classification_name, classification_id)
+  if (result) {
+    req.flash("notice", "Classification updated successfully.")
+    res.redirect("/inv/update-classification")
+  } else {
+    req.flash("notice", "Update failed.")
+    res.redirect("/inv/update-classification/" + classification_id)
+  }
+}
+
 
 module.exports = invCont

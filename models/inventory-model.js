@@ -7,6 +7,7 @@ async function getClassifications(){
   return await pool.query("SELECT * FROM public.classification ORDER BY classification_name")
 }
 
+
 /* ***************************
  *  Get all inventory items and classification_name by classification_id
  * ************************** */
@@ -143,4 +144,51 @@ async function deleteInventory(inv_id) {
   }
 }
 
-module.exports = {getClassifications, getInventoryByClassificationId, getVehicleByInventoryId, addClassification, insertInventory, updateInventory, deleteInventory }
+/* ***************************
+ *  Get all classifications data (array)
+ * ************************** */
+
+async function getClassificationsData() {
+  const result = await pool.query("SELECT * FROM public.classification ORDER BY classification_name")
+  return result.rows // <- Esto es lo que espera tu EJS
+}
+
+/* ***************************
+ *  Get all classifications by id
+ * ************************** */
+
+async function getClassificationById(classification_id){
+  try{
+    const data = await pool.query(
+      `SELECT * FROM public.classification WHERE classification_id = $1`,
+      [classification_id]
+    )
+    return data.rows[0]
+  } catch (error) {
+    throw new Error("Database query failed")
+  }
+}
+
+/* ***************************
+ *  Update Classification
+ * ************************** */
+async function updateClassification(
+  classification_name,
+  classification_id
+) {
+  try {
+    const sql =
+      "UPDATE public.classification SET classification_name = $1 WHERE classification_id = $2 RETURNING *"
+    const data = await pool.query(sql, [
+      classification_name,
+      classification_id,
+    ])
+    return data.rows[0]
+  } catch (error) {
+    console.error("model error: " + error)
+  }
+}
+
+
+
+module.exports = {getClassifications, getInventoryByClassificationId, getVehicleByInventoryId, addClassification, insertInventory, updateInventory, deleteInventory, getClassificationsData, getClassificationById, updateClassification }

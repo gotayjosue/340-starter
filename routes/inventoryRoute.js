@@ -30,6 +30,12 @@ router.get('/edit/:inv_id', utilities.checkAccountType, utilities.handleErrors(i
 //Route to build the delete car view
 router.get('/delete/:inv_id', utilities.checkAccountType, utilities.handleErrors(invController.deleteVehicleView))
 
+//Route to build the update classification view
+router.get('/update-classification', utilities.checkAccountType, utilities.handleErrors(invController.updateClassificationView))
+
+//Route to build the url inside the table
+router.get('/edit-classification/:classification_id', utilities.handleErrors(invController.updateClassificationData))
+
 
 
 //Process add classification attempt
@@ -57,5 +63,13 @@ router.post(
 
 //Route to delete a car from the inventory
 router.post("/delete-confirm", invController.deleteInventory)
+
+//Route to edit a classification
+router.post(
+    "/edit-classification",
+    classValidate.classificationRules(),
+    classValidate.checkUpdateClassificationData,
+    invController.updateClassification
+)
 
 module.exports = router;

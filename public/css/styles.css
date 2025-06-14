@@ -687,6 +687,66 @@ input[type = 'email']{
   cursor: pointer;
 }
 
+/*Edit classification form*/
+
+.updateClassificationData{
+  margin: auto;
+  border: 1px solid rgb(255, 255, 255);
+  background-color: rgba(33, 64, 73, 0.836);
+  padding: 50px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 500px;
+  margin-top: 50px;
+}
+
+.updateClassificationData p{
+  color: white;
+}
+
+.updateClassificationData label{
+  color: white;
+  display: block;
+  padding-top: 1rem;
+  margin-top: 15px;
+}
+
+.updateClassificationData input[type = 'text'],
+input[type = 'email']{
+  display: block;
+  width: 100%;
+  padding: .75rem;
+  margin-top: 5px;
+}
+
+.updateClassificationData textarea{
+  height: 110px;
+}
+
+.updateClassificationData .buttonContainer{
+  text-align: center;
+  margin-top: 30px;
+}
+
+.updateClassificationData button[type = 'submit']{
+  border: none;
+  padding: .75rem;
+  width: 50%;
+  background-color: white;
+  color: rgb(255, 255, 255);
+  font-size: 16px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.24);
+  border-radius: 10px;
+  background-color: rgba(0, 128, 0, 0.5);
+  transition: .8s;
+  cursor: pointer;
+}
+
+.updateClassificationData button:disabled{
+  background-color: rgba(255, 0, 0, 0.493);
+  cursor: not-allowed;
+}
+
 
 /* Account Management view */
 

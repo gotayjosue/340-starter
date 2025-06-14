@@ -32,4 +32,22 @@ validate.checkClassificationData = async (req, res, next) => {
   next()
 }
 
+validate.checkUpdateClassificationData = async (req, res, next) => {
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav()
+    res.render("inventory/edit-classification", {
+      title: "Edit Classification",
+      nav,
+      errors,
+      classification: {
+        classification_id: req.body.classification_id,
+        classification_name: req.body.classification_name
+      }
+    })
+    return
+  }
+  next()
+}
+
 module.exports = validate
